@@ -1,0 +1,12 @@
+[package]
+name = "sui-client"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1.0.58"
+clap = { version = "3.1.17", features = ["derive"] }
+sui-sdk = {path="../../sui/crates/sui-sdk"}
+tokio = "1.20.1"
