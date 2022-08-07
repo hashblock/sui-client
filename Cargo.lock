@@ -2105,6 +2105,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "85dcb89d2b10c5f6133de2efd8c11959ce9dbb46a2f7a4cab208c4eeda6ce1ab"
 
 [[package]]
+name = "fs_extra"
+version = "1.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2022715d62ab30faffd124d40b76f4134a550a87792276512b18d63272333394"
+
+[[package]]
 name = "futures"
 version = "0.3.21"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2837,6 +2843,38 @@ name = "itoa"
 version = "1.0.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6c8af84674fe1f223a982c933a0ee1086ac4d4052aa0fb8060c12c6ad838e754"
+
+[[package]]
+name = "jemalloc-ctl"
+version = "0.5.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c1891c671f3db85d8ea8525dd43ab147f9977041911d24a03e5a36187a7bfde9"
+dependencies = [
+ "jemalloc-sys",
+ "libc",
+ "paste",
+]
+
+[[package]]
+name = "jemalloc-sys"
+version = "0.5.1+5.3.0-patched"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b7c2b313609b95939cb0c5a5c6917fb9b7c9394562aa3ef44eb66ffa51736432"
+dependencies = [
+ "cc",
+ "fs_extra",
+ "libc",
+]
+
+[[package]]
+name = "jemallocator"
+version = "0.5.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "16c2514137880c52b0b4822b563fadd38257c1f380858addb74a400889696ea6"
+dependencies = [
+ "jemalloc-sys",
+ "libc",
+]
 
 [[package]]
 name = "jobserver"
@@ -6527,6 +6565,49 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6bdef32e8150c2a081110b42772ffe7d7c9032b606bc226c8260fd97e0976601"
 
 [[package]]
+name = "sui"
+version = "0.6.2"
+dependencies = [
+ "anyhow",
+ "async-trait",
+ "base64ct",
+ "bcs",
+ "camino",
+ "clap 3.2.2",
+ "colored",
+ "ed25519-dalek",
+ "jemalloc-ctl",
+ "jemallocator",
+ "move-cli",
+ "move-core-types",
+ "move-package",
+ "move-prover",
+ "move-prover-boogie-backend",
+ "move-unit-test",
+ "multiaddr",
+ "rustyline",
+ "rustyline-derive",
+ "serde 1.0.142",
+ "serde_json",
+ "serde_with 1.14.0",
+ "shell-words",
+ "signature",
+ "sui-config",
+ "sui-core",
+ "sui-framework",
+ "sui-json",
+ "sui-json-rpc-types",
+ "sui-sdk",
+ "sui-swarm",
+ "sui-types",
+ "telemetry-subscribers",
+ "tokio",
+ "tracing",
+ "unescape",
+ "workspace-hack 0.1.0",
+]
+
+[[package]]
 name = "sui-adapter"
 version = "0.1.0"
 dependencies = [
@@ -6548,6 +6629,8 @@ version = "0.1.0"
 dependencies = [
  "anyhow",
  "clap 3.2.2",
+ "sui",
+ "sui-config",
  "sui-sdk",
  "tokio",
 ]
@@ -6742,6 +6825,33 @@ dependencies = [
 ]
 
 [[package]]
+name = "sui-node"
+version = "0.6.2"
+dependencies = [
+ "anyhow",
+ "axum",
+ "clap 3.2.2",
+ "futures",
+ "jemalloc-ctl",
+ "jemallocator",
+ "multiaddr",
+ "mysten-network 0.1.0 (git+https://github.com/MystenLabs/mysten-infra?rev=123c9e40b529315e1c1d91a54fb717111c3e349c)",
+ "parking_lot 0.12.1",
+ "prometheus",
+ "sui-config",
+ "sui-core",
+ "sui-json-rpc",
+ "sui-network",
+ "sui-storage",
+ "sui-telemetry",
+ "sui-types",
+ "telemetry-subscribers",
+ "tokio",
+ "tracing",
+ "workspace-hack 0.1.0",
+]
+
+[[package]]
 name = "sui-open-rpc"
 version = "0.6.1"
 dependencies = [
@@ -6806,6 +6916,36 @@ dependencies = [
  "tokio-stream",
  "tracing",
  "typed-store",
+ "workspace-hack 0.1.0",
+]
+
+[[package]]
+name = "sui-swarm"
+version = "0.0.0"
+dependencies = [
+ "anyhow",
+ "futures",
+ "mysten-network 0.1.0 (git+https://github.com/MystenLabs/mysten-infra?rev=123c9e40b529315e1c1d91a54fb717111c3e349c)",
+ "rand 0.7.3",
+ "sui-config",
+ "sui-node",
+ "sui-types",
+ "tap",
+ "tempfile",
+ "tokio",
+ "tonic-health",
+ "tracing",
+ "workspace-hack 0.1.0",
+]
+
+[[package]]
+name = "sui-telemetry"
+version = "0.1.0"
+dependencies = [
+ "reqwest",
+ "serde 1.0.142",
+ "tokio",
+ "tracing",
  "workspace-hack 0.1.0",
 ]
 

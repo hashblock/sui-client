@@ -8,5 +8,8 @@ edition = "2021"
 [dependencies]
 anyhow = "1.0.58"
 clap = { version = "3.1.17", features = ["derive"] }
+sui = {path="../../sui/crates/sui"}
+sui-config = {path="../../sui/crates/sui-config"}
 sui-sdk = {path="../../sui/crates/sui-sdk"}
+
 tokio = "1.20.1"
