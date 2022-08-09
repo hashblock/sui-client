@@ -15,6 +15,21 @@ async fn get_total_gas_balance(
     Ok(total_balance)
 }
 
+/// Get and parse contract objects for address
+/// Probably a better way but... still putting this together
+async fn get_owned_contracts(
+    wallet: &WalletContext,
+    address: SuiAddress,
+) -> Result<(), anyhow::Error> {
+    for object in wallet.gateway.get_objects_owned_by_address(address).await? {
+        let obj_type = object.type_.split("::").collect::<Vec<&str>>();
+        if obj_type[1] != "coin" {
+            println!("Address {} = {}", obj_type[0], obj_type[2]);
+        }
+    }
+    Ok(())
+}
+
 #[tokio::main]
 async fn main() -> Result<(), anyhow::Error> {
     // Instantiate wallet context
@@ -27,5 +42,6 @@ async fn main() -> Result<(), anyhow::Error> {
         "Total balance {}",
         get_total_gas_balance(&wallet, wallet.config.active_address.unwrap()).await?
     );
+    get_owned_contracts(&wallet, wallet.config.active_address.unwrap()).await?;
     Ok(())
 }
