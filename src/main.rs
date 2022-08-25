@@ -7,6 +7,7 @@ async fn get_total_gas_balance(
     wallet: &WalletContext,
     address: SuiAddress,
 ) -> Result<u64, anyhow::Error> {
+    println!("Fetching balance for {}", address);
     let balances = wallet.gas_objects(address).await?;
     let mut total_balance = 0u64;
     for gas in balances {
