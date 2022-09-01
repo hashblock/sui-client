@@ -10,7 +10,8 @@ async fn get_total_gas_balance(
     let balances = wallet.gas_objects(*address).await?;
     let mut total_balance = 0u64;
     for gas in balances {
-        println!("  {} = {}", address, gas.0);
+        let v1 = gas.1;
+        println!("  {} = {}", v1.id(), gas.0);
         total_balance = total_balance + gas.0;
     }
     Ok(total_balance)
@@ -25,6 +26,7 @@ async fn get_owned_contracts(
     let mut cnt = 0u8;
     for object in wallet
         .gateway
+        .read_api()
         .get_objects_owned_by_address(*address)
         .await?
     {
@@ -64,10 +66,6 @@ async fn main() -> Result<(), anyhow::Error> {
     config_path.push(SUI_CLIENT_CONFIG);
     let wallet = WalletContext::new(&config_path).await?;
     inspect_walet(&wallet).await?;
-    println!("Keys");
-    for key in wallet.keystore.keys() {
-        println!("  {}", key);
-    }
 
     Ok(())
 }

@@ -1,0 +1,10 @@
+[package]
+name = "SuiGuess"
+version = "0.0.1"
+
+[dependencies]
+# Assuming the `sui` repository is at the same level as the package parent directory
+Sui = { local = "../../../sui/crates/sui-framework/" }
+
+[addresses]
+suiguess = "0x0"
